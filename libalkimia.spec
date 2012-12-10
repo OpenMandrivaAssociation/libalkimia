@@ -50,3 +50,11 @@ rm -rf %{buildroot}
 rm -rf %{buildroot}
 
 
+
+
+%changelog
+* Sun Sep 25 2011 Thomas Spuhler <tspuhler@mandriva.org> 4.3.1-1mdv2012.0
++ Revision: 701187
+- totally revamped spec file, harmonized with Mageia
+- imported package libalkimia
+
