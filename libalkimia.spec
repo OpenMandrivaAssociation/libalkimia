@@ -9,17 +9,28 @@ URL:		http://kde-apps.org/content/show.php/libalkimia?content=137323
 BuildRequires:	kdelibs4-devel
 BuildRequires:	gmpxx-devel
 
+%define major 4
+%define lib %mklibname alkimia %major
+
 %description 
 Financial library used by KMyMoney and Scrooge
 
-%files
+%package -n %lib
+Summary:	Financial Library
+Group:		System/Libraries
+Provides:	%name = %EVRD
+
+%description -n %lib
+Financial library used by KMyMoney and Scrooge
+
+%files -n %lib
 %defattr(-,root,root)
-%{_kde_libdir}/%{name}.so.4*
+%{_kde_libdir}/%{name}.so.%{major}*
 
 
 %package devel
 Summary:	Development files for %{name}
-Group:		System/Libraries
+Group:		Development/C
 Requires:	%{name} = %{version}-%{release}
 Requires:	kdelibs4-devel
 
@@ -45,12 +56,6 @@ Requires:	kdelibs4-devel
 %install
 rm -rf %{buildroot}
 %{makeinstall_std} -C build
-
-%clean
-rm -rf %{buildroot}
-
-
-
 
 %changelog
 * Sun Sep 25 2011 Thomas Spuhler <tspuhler@mandriva.org> 4.3.1-1mdv2012.0
