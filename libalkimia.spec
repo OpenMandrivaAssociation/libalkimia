@@ -1,7 +1,7 @@
 Summary:	Financial library
 Name:		libalkimia
-Version:	4.3.1
-Release:	%mkrel 1
+Version:	4.3.2
+Release:	1
 Source0:	http://kde-apps.org/CONTENT/content-files/137323-libalkimia-%{version}.tar.bz2
 License:	LGPLv2+
 Group:		Office
