@@ -5,7 +5,7 @@
 Summary:	Financial library
 Name:		libalkimia
 Version:	4.3.2
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		Office
 Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
@@ -28,6 +28,7 @@ Financial library used by KMyMoney and Scrooge
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	libalkimia-devel < 4.3.2-2
 
 %description -n %{devname}
 This package contains the development files for %{name}.
