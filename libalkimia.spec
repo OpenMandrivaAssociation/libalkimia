@@ -1,50 +1,36 @@
+%define major	4
+%define libname	%mklibname alkimia %{major}
+%define devname	%mklibname alkimia -d
+
 Summary:	Financial library
 Name:		libalkimia
 Version:	4.3.2
 Release:	1
-Source0:	http://kde-apps.org/CONTENT/content-files/137323-libalkimia-%{version}.tar.bz2
 License:	LGPLv2+
 Group:		Office
-URL:		http://kde-apps.org/content/show.php/libalkimia?content=137323
-BuildRequires:	kdelibs4-devel
+Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
+Source0:	http://kde-apps.org/CONTENT/content-files/137323-libalkimia-%{version}.tar.bz2
 BuildRequires:	gmpxx-devel
-
-%define major 4
-%define lib %mklibname alkimia %major
+BuildRequires:	kdelibs4-devel
 
 %description 
 Financial library used by KMyMoney and Scrooge
 
-%package -n %lib
+%package -n %{libname}
 Summary:	Financial Library
 Group:		System/Libraries
-Provides:	%name = %EVRD
+Provides:	%{name} = %{EVRD}
 
-%description -n %lib
+%description -n %{libname}
 Financial library used by KMyMoney and Scrooge
 
-%files -n %lib
-%defattr(-,root,root)
-%{_kde_libdir}/%{name}.so.%{major}*
-
-
-%package devel
+%package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{name} = %{version}-%{release}
-Requires:	kdelibs4-devel
+Requires:	%{libname} = %{version}-%{release}
 
-%description devel
-%{summary}.
-
-%files devel
-%defattr(-,root,root)
-%{_kde_includedir}/alkimia/
-%{_kde_libdir}/%{name}.so
-%{_kde_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/apps/cmake/modules/FindLibAlkimia.cmake
-
-#-----------------------------------------------------------------------------
+%description -n %{devname}
+This package contains the development files for %{name}.
 
 %prep
 %setup -q
@@ -54,12 +40,14 @@ Requires:	kdelibs4-devel
 %make
 
 %install
-rm -rf %{buildroot}
-%{makeinstall_std} -C build
+%makeinstall_std -C build
 
-%changelog
-* Sun Sep 25 2011 Thomas Spuhler <tspuhler@mandriva.org> 4.3.1-1mdv2012.0
-+ Revision: 701187
-- totally revamped spec file, harmonized with Mageia
-- imported package libalkimia
+%files -n %{libname}
+%{_kde_libdir}/%{name}.so.%{major}*
+
+%files -n %{devname}
+%{_kde_includedir}/alkimia/
+%{_kde_libdir}/%{name}.so
+%{_kde_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/apps/cmake/modules/FindLibAlkimia.cmake
 
