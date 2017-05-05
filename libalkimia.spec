@@ -1,19 +1,24 @@
-%define major	4
+%define major	6
 %define libname	%mklibname alkimia %{major}
 %define devname	%mklibname alkimia -d
+%define date	20170505
 
 Summary:	Financial library
 Name:		libalkimia
-Version:	4.3.2
-Release:	10
+Version:	6.0.0
+Release:	0.%{date}.1
 License:	LGPLv2+
 Group:		Office
 Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
-Source0:	http://kde-apps.org/CONTENT/content-files/137323-libalkimia-%{version}.tar.bz2
+Source0:	http://kde-apps.org/CONTENT/content-files/libalkimia-%{version}-%{date}.tar.xz
 BuildRequires:	gmpxx-devel
 BuildRequires:	kdelibs4-devel
+BuildRequires:	extra-cmake-modules
+BuildRequires:	cmake(Qt5)
+BuildRequires:	cmake(Qt5DBus)
+BuildRequires:	cmake(Qt5Test)
 
-%description 
+%description
 Financial library used by KMyMoney and Scrooge
 
 %package -n %{libname}
@@ -34,21 +39,20 @@ Obsoletes:	libalkimia-devel < 4.3.2-2
 This package contains the development files for %{name}.
 
 %prep
-%setup -q
+%setup -q -n libalkimia-%{version}-%{date}
 
 %build
-%cmake_kde4
+%cmake
 %make
 
 %install
 %makeinstall_std -C build
 
 %files -n %{libname}
-%{_kde_libdir}/%{name}.so.%{major}*
+%{_libdir}/%{name}.so.%{major}*
 
 %files -n %{devname}
-%{_kde_includedir}/alkimia/
-%{_kde_libdir}/%{name}.so
-%{_kde_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/apps/cmake/modules/FindLibAlkimia.cmake
-
+%{_includedir}/alkimia/
+%{_libdir}/%{name}.so
+%{_libdir}/pkgconfig/%{name}.pc
+%{_libdir}/cmake/LibAlkimia-%{major}.0/*.cmake
