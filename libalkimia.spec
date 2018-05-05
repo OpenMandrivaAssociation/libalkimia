@@ -4,12 +4,12 @@
 
 Summary:	Financial library
 Name:		libalkimia
-Version:	7.0.1
+Version:	7.0.2
 Release:	1
 License:	LGPLv2+
 Group:		Office
 Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
-Source0:	https://download.kde.org/stable/alkimia/%{version}/src/alkimia-%{version}.tar.xz
+Source0:	https://download.kde.org/stable/alkimia/%{version}/alkimia-%{version}.tar.xz
 BuildRequires:	gmpxx-devel
 BuildRequires:	extra-cmake-modules
 BuildRequires:	cmake(Qt5)
