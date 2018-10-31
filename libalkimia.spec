@@ -5,7 +5,7 @@
 Summary:	Financial library
 Name:		libalkimia
 Version:	7.0.2
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		Office
 Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
