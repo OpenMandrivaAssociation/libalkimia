@@ -15,6 +15,7 @@ BuildRequires:	extra-cmake-modules
 BuildRequires:	cmake(Qt5)
 BuildRequires:	cmake(Qt5DBus)
 BuildRequires:	cmake(Qt5Test)
+BuildRequires:  cmake(Qt5WebKitWidgets)
 
 %description
 Financial library used by KMyMoney and Scrooge
@@ -41,10 +42,10 @@ This package contains the development files for %{name}.
 
 %build
 %cmake
-%make
+%make_build
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 %files -n %{libname}
 %{_libdir}/%{name}5.so.%{major}*
