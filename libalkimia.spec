@@ -1,10 +1,10 @@
-%define major	7
+%define major	8
 %define libname	%mklibname alkimia5 %{major}
 %define devname	%mklibname alkimia5 -d
 
 Summary:	Financial library
 Name:		libalkimia
-Version:	8.0.1
+Version:	8.0.3
 Release:	1
 License:	LGPLv2+
 Group:		Office
@@ -16,6 +16,7 @@ BuildRequires:	cmake(Qt5)
 BuildRequires:	cmake(Qt5DBus)
 BuildRequires:	cmake(Qt5Test)
 BuildRequires:  cmake(Qt5WebKitWidgets)
+BuildRequires:	ninja
 
 %description
 Financial library used by KMyMoney and Scrooge
@@ -23,7 +24,7 @@ Financial library used by KMyMoney and Scrooge
 %package -n %{libname}
 Summary:	Financial Library
 Group:		System/Libraries
-Provides:	%{name} = %{EVRD}
+Requires:	%{name} = %{EVRD}
 
 %description -n %{libname}
 Financial library used by KMyMoney and Scrooge
@@ -39,13 +40,28 @@ This package contains the development files for %{name}.
 
 %prep
 %setup -q -n alkimia-%{version}
+%cmake_kde5 \
+	-DSHARE_INSTALL_DIR=%{_datadir}
 
 %build
-%cmake
-%make_build
+%ninja_build -C build
 
 %install
-%make_install -C build
+%ninja_install -C build
+%find_lang alkimia --all-name
+
+%files -f alkimia.lang
+%{_sysconfdir}/xdg/alkimia-quotes.knsrc
+%{_sysconfdir}/xdg/kmymoney-quotes.knsrc
+%{_sysconfdir}/xdg/skrooge-quotes.knsrc
+%{_bindir}/onlinequoteseditor5
+%{_libdir}/qt5/qml/org/kde/alkimia
+%{_datadir}/alkimia5
+%{_datadir}/applications/org.kde.onlinequoteseditor5.desktop
+%{_datadir}/icons/hicolor/*/apps/onlinequoteseditor5.*
+%{_datadir}/kservices5/plasma-applet-org.wincak.foreigncurrencies2.desktop
+%{_datadir}/metainfo/org.wincak.foreigncurrencies2.appdata.xml
+%{_datadir}/plasma/plasmoids/org.wincak.foreigncurrencies2
 
 %files -n %{libname}
 %{_libdir}/%{name}5.so.%{major}*
