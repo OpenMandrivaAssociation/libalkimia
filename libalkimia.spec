@@ -8,7 +8,7 @@ Version:	8.0.3
 Release:	2
 License:	LGPLv2+
 Group:		Office
-Url:		http://kde-apps.org/content/show.php/libalkimia?content=137323
+Url:		https://kde-apps.org/content/show.php/libalkimia?content=137323
 Source0:	https://download.kde.org/stable/alkimia/%{version}/alkimia-%{version}.tar.xz
 BuildRequires:	gmpxx-devel
 BuildRequires:	extra-cmake-modules
